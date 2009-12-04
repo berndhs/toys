@@ -16,6 +16,7 @@
 //
 
 #include <QApplication>
+#include <QTranslator>
 #include <QTimer>
 #include <QProcess>
 #include <QWidget>

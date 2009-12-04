@@ -13,14 +13,18 @@
 # //
 
 
-CONFIG += qt release
+CONFIG += qt debug
 LIBS += 
 TARGET = eyes
 
-  QMAKE_CFLAGS_RELEASE -= -g
-  QMAKE_CXXFLAGS_RELEASE -= -g
+#  QMAKE_CFLAGS_RELEASE -= -g
+#  QMAKE_CXXFLAGS_RELEASE -= -g
 
 FORMS += eyes.ui
+TRANSLATIONS += eyes_en_US.ts \
+eyes_de_DE.ts
+
+RESOURCES += eyes.qrc
 
 SOURCES += eyes.cpp runeyes.cpp
 
