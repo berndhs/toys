@@ -128,6 +128,7 @@ namespace eyes {
      double len = (midx > midy ? midy : midx);
      int    shortlen = int(len /10.0);
      QPainter paint(this);
+     paint.setRenderHint(QPainter::HighQualityAntialiasing);
      paint.setBrush(Qt::NoBrush);
      QPen linePen;
      linePen.setColor(QColor(0,0,255,255));
