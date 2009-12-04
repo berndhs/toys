@@ -1,8 +1,10 @@
 
 #include "eyes.h"
 #include <QMessageBox>
-#include <QByteArray>
+#include <QAbstractButton>
+#include <QPushButton>
 #include <QDebug>
+#include <QPainter>
 
 //
 //  Copyright (C) 2009 - Bernd H Stramm 
@@ -16,27 +18,62 @@
 //
 //
 #include <iostream>
+#include <cmath>
+#include <QDesktopWidget>
+
 using namespace std;
 
 namespace eyes {
 
   eyes::eyes (QApplication *app)
     :pApp(app)
-    ,pShell(0)
-    ,againDelay(1000)           // 10 minutes
-    ,fortuneCommand (QString("fortune"))
+    ,againDelay(1000)        
   {
     setupUi (this);
-
-    connect (quitButton, SIGNAL(clicked()), this, SLOT(quit()));
-    connect (optionsButton, SIGNAL(clicked()), this, SLOT(NotImplemented()));
-    connect (againButton, SIGNAL(clicked()), this, SLOT(NotImplemented()));
-
     connect (&againTimer, SIGNAL(timeout()), this, SLOT(MyUpdate()));
-    setCursor (Qt::WhatsThisCursor);
-    theLabel->setCursor(Qt::CrossCursor);
+    
+    setCursor (Qt::CrossCursor);
+    
     againTimer.start(againDelay);
-    pShell = new QProcess(this);
+    QDesktopWidget *dt = app->desktop();
+    QRect screen = dt->screenGeometry();
+    ScreenHeight = screen.height();
+    ScreenWidth  = screen.width();
+  }
+  
+  void
+  eyes::SetDelay (int msec) {
+    againDelay = msec;
+    againTimer.stop();
+    againTimer.start(againDelay);
+  }
+  
+  int
+  eyes::delay () {
+    return againDelay;
+  }
+  
+  void
+  eyes::mousePressEvent(QMouseEvent *click)
+  {
+     QMessageBox box;
+     QAbstractButton *quitButton 
+            = box.addButton("Quit", QMessageBox::ActionRole);
+     QAbstractButton *keepGoing
+            = box.addButton("Yes", QMessageBox::AcceptRole);
+     box.setText ("Keep Going?");
+     QTimer::singleShot(5000,&box,SLOT(accept()));
+     box.exec();
+     QAbstractButton *result = box.clickedButton();
+     if (result == 0) {
+        return;
+     }
+     if (result == quitButton) {
+       quit();
+     }
+     if (result == keepGoing) {
+       return;
+     }
   }
 
 
@@ -52,9 +89,26 @@ namespace eyes {
   void
   eyes::MyUpdate ()
   {
-    qDebug() << " my update at " << QCursor::pos();
+    this->update();
   }
 
+  void
+  eyes::paintEvent (QPaintEvent *event)
+  {
+    
+    QPointF lastCur(QCursor::pos());
+    double relHi = lastCur.y()/ScreenHeight;
+    double relWid = lastCur.x()/ScreenWidth;
+    relHi *= this->height();
+    relWid *= this->width();
+    
+    QPainter paint(this);
+    paint.setBrush(Qt::NoBrush);
+    paint.setPen(QColor(200,10,10,255));
+    paint.translate(0,0);
+    paint.drawEllipse(QPointF(relWid,relHi),5,5);
+  }
+  
   void
   eyes::quit ()
   {
