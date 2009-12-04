@@ -22,8 +22,8 @@ TARGET = eyes
 
 FORMS += eyes.ui
 
-SOURCES += eyes.cpp runeyes.cpp vec2.cpp
+SOURCES += eyes.cpp runeyes.cpp
 
-HEADERS += eyes.h vec2.h
+HEADERS += eyes.h
 
 

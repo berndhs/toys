@@ -23,10 +23,7 @@
 #include <QPaintEvent>
 #include <QMouseEvent>
 #include <QPointF>
-#include "vec2.h"
 
-
-using namespace berndsutil;
 
 namespace eyes {
 
@@ -60,8 +57,6 @@ public:
      double    ScreenWidth;
      QPointF   VirtualCursor;
      
-     Vec2      mMyPos;
-     Vec2      mLastCursor;
 
      QTimer    againTimer;
      int       againDelay;
