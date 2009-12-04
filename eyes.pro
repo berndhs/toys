@@ -13,7 +13,7 @@
 # //
 
 
-CONFIG += qt debug
+CONFIG += qt
 LIBS += 
 TARGET = eyes
 
@@ -22,7 +22,8 @@ TARGET = eyes
 
 FORMS += eyes.ui
 TRANSLATIONS += eyes_en_US.ts \
-eyes_de_DE.ts
+eyes_de_DE.ts \
+eyes_en_CA.ts
 
 RESOURCES += eyes.qrc
 
