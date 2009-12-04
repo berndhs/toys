@@ -54,8 +54,8 @@ namespace eyes {
   }
   
   void
-  eyes::mousePressEvent(QMouseEvent *click)
-  {
+  eyes::MenuPopup ()
+  { 
      QMessageBox box;
      QAbstractButton *quitButton 
             = box.addButton("Quit", QMessageBox::ActionRole);
@@ -75,6 +75,12 @@ namespace eyes {
        return;
      }
   }
+  
+  void
+  eyes::mousePressEvent(QMouseEvent *click)
+  {
+    MenuPopup();
+  }
 
 
   void
@@ -89,13 +95,12 @@ namespace eyes {
   void
   eyes::MyUpdate ()
   {
-    this->update();
+    this->update(); // encourage PaintEvent
   }
-
+  
   void
-  eyes::paintEvent (QPaintEvent *event)
+  eyes::ShowSpot ()
   {
-    
     QPointF lastCur(QCursor::pos());
     double relHi = lastCur.y()/ScreenHeight;
     double relWid = lastCur.x()/ScreenWidth;
@@ -107,6 +112,44 @@ namespace eyes {
     paint.setPen(QColor(200,10,10,255));
     paint.translate(0,0);
     paint.drawEllipse(QPointF(relWid,relHi),5,5);
+  }
+  
+  void
+  eyes::ShowPointer ()
+  {
+     QPoint mid (this->width()/2, this->height()/2);
+     double midx = double(mid.x());
+     double midy = double(mid.y());
+     QPoint cursPoint (QCursor::pos());
+     QPoint midGlobal = this->mapToGlobal(mid);
+     double dx = double(cursPoint.x()) - double (midGlobal.x());
+     double dy = double(cursPoint.y()) - double (midGlobal.y());
+     double theta = -atan2(dx,dy) * 180.0/M_PI;
+     double len = (midx > midy ? midy : midx);
+     int    shortlen = int(len /10.0);
+     QPainter paint(this);
+     paint.setBrush(Qt::NoBrush);
+     QPen linePen;
+     linePen.setColor(QColor(0,0,255,255));
+     linePen.setWidth(len*0.05);
+     linePen.setCapStyle(Qt::RoundCap);
+     paint.setPen(linePen);
+     paint.translate(mid);
+     paint.rotate(theta);
+     paint.save();
+     paint.drawLine(0,0,0,int(len));
+     paint.restore();
+     paint.translate(0,int(len));
+     paint.drawLine(0,0,-shortlen,-shortlen);
+     paint.drawLine(0,0,shortlen, -shortlen);
+  }
+  
+
+  void
+  eyes::paintEvent (QPaintEvent *event)
+  {
+    ShowSpot ();
+    ShowPointer ();
   }
   
   void

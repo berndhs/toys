@@ -48,7 +48,10 @@ public:
      void mousePressEvent(QMouseEvent *click);
      
   private:
-
+  
+     void MenuPopup ();
+     void ShowSpot ();
+     void ShowPointer ();
    
      QApplication *pApp;
      QPainter     *painter;
