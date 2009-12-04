@@ -27,7 +27,7 @@
 
 namespace eyes {
 
-  class eyes : public QWidget,  public Ui_EyeWindow {
+  class eyes : public QWidget, public Ui_EyeWindow {
 
 Q_OBJECT
 
