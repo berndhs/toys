@@ -42,6 +42,7 @@ namespace eyes {
     QRect screen = dt->screenGeometry();
     ScreenHeight = screen.height();
     ScreenWidth  = screen.width();
+    this->resize(ScreenWidth/10,ScreenHeight/10);
   }
   
   void
@@ -61,10 +62,10 @@ namespace eyes {
   { 
      QMessageBox box;
      QAbstractButton *quitButton 
-            = box.addButton("Quit", QMessageBox::ActionRole);
+            = box.addButton(tr("Quit"), QMessageBox::ActionRole);
      QAbstractButton *keepGoing
-            = box.addButton("Yes", QMessageBox::AcceptRole);
-     box.setText ("Keep Going?");
+            = box.addButton(tr("Yes"), QMessageBox::AcceptRole);
+     box.setText (tr("Keep Going?"));
      QTimer::singleShot(5000,&box,SLOT(accept()));
      box.exec();
      QAbstractButton *result = box.clickedButton();
@@ -91,7 +92,7 @@ namespace eyes {
   {
     QMessageBox msgBox;
     QTimer::singleShot(15000, &msgBox, SLOT(accept()));
-    msgBox.setText("not implemented at this time");
+    msgBox.setText(tr("not implemented at this time"));
     msgBox.exec();
   }
   
