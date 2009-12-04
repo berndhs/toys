@@ -18,7 +18,10 @@
 //
 //
 #include <iostream>
-#include <cmath>
+#include <math.h>
+#ifndef M_PI
+#define M_PI 3.1415265
+#endif
 #include <QDesktopWidget>
 
 using namespace std;
