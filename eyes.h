@@ -1,6 +1,7 @@
 #ifndef EYES_H
 #define EYES_H
 
+
 #include "ui_eyes.h"
 //
 //  Copyright (C) 2009 - Bernd H Stramm 
@@ -18,11 +19,18 @@
 #include <QTimer>
 #include <QProcess>
 #include <QWidget>
+#include <QPainter>
+#include <QPaintEvent>
+#include <QMouseEvent>
+#include <QPointF>
+#include "vec2.h"
 
+
+using namespace berndsutil;
 
 namespace eyes {
 
-  class eyes : public QWidget,  public Ui_EyesWindow {
+  class eyes : public QWidget,  public Ui_EyeWindow {
 
 Q_OBJECT
 
@@ -30,8 +38,8 @@ public:
  
    eyes (QApplication *app);
 
-   void SetDelay (int msecs) { againDelay = msecs; }
-   void SetCommand (QString cmd) { fortuneCommand = cmd; }
+   void SetDelay (int msecs);
+   int  delay();
 
    public slots:
 
@@ -39,19 +47,24 @@ public:
      void quit();
      void NotImplemented ();
      void MyUpdate();
+     void paintEvent(QPaintEvent *event);
+     void mousePressEvent(QMouseEvent *click);
      
   private:
 
    
      QApplication *pApp;
-     QProcess     *pShell;
+     QPainter     *painter;
+     
+     double    ScreenHeight;
+     double    ScreenWidth;
+     QPointF   VirtualCursor;
+     
+     Vec2      mMyPos;
+     Vec2      mLastCursor;
 
      QTimer    againTimer;
      int       againDelay;
-
-     QString   fortuneCommand;
-
-
 };
 
 

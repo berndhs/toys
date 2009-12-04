@@ -22,7 +22,7 @@ main (int argc, char *argv[])
 
   eyes::eyes TheEyes(&App);
 
-  TheEyes.SetDelay(500);
+  TheEyes.SetDelay(100);
 
   TheEyes.show();
   App.exec();
