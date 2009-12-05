@@ -2,6 +2,59 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="en_US">
 <context>
+    <name>EyeConfig</name>
+    <message>
+        <location filename="eyeconfig.ui" line="14"/>
+        <source>Configure Cursor Chaser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eyeconfig.ui" line="26"/>
+        <source>Apply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eyeconfig.ui" line="39"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eyeconfig.ui" line="52"/>
+        <source>Quit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eyeconfig.ui" line="65"/>
+        <source>Display Eyes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eyeconfig.ui" line="78"/>
+        <source>Display Arrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eyeconfig.ui" line="91"/>
+        <source>Show Bubble</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eyeconfig.ui" line="104"/>
+        <source>Show Frame</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eyeconfig.ui" line="122"/>
+        <source>Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eyeconfig.ui" line="140"/>
+        <source>Author</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>EyeWindow</name>
     <message>
         <source>Eyes</source>

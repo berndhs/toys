@@ -24,17 +24,23 @@
 #endif
 #include <QDesktopWidget>
 #include "version.h"
+#include "eyeconfig.h"
 
 using namespace std;
 
-namespace eyes {
+namespace eyespace {
 
   eyes::eyes (QApplication *app)
     :pApp(app)
     ,againDelay(1000)        
   {
     setupUi (this);
-    connect (&againTimer, SIGNAL(timeout()), this, SLOT(MyUpdate()));
+    defaultWinFlags = this->windowFlags();
+    config = new EyeConfig(this);
+    if (config == 0) {
+      exit(1);
+    }
+    connect (&againTimer, SIGNAL(timeout()), this, SLOT(update()));
     
     setCursor (Qt::CrossCursor);
     
@@ -44,6 +50,8 @@ namespace eyes {
     ScreenHeight = screen.height();
     ScreenWidth  = screen.width();
     this->resize(ScreenWidth/10,ScreenHeight/10);
+    SetFrameConf();
+    config->show();
   }
   
   void
@@ -59,37 +67,42 @@ namespace eyes {
   }
   
   void
+  eyes::SetFrameConf()
+  {
+    if (config) {
+      if (config->ShowFrame()) {
+         setWindowFlags(defaultWinFlags);
+         this->show();
+      } else {
+         Qt::WindowFlags flags = defaultWinFlags;
+         flags |= Qt::FramelessWindowHint;
+         setWindowFlags(flags);
+         this->show();
+      }
+    } else {
+      exit(1); // no config - something broken bad
+    }
+  }
+  
+  void
   eyes::MenuPopup ()
   { 
-     QMessageBox box;
-     QAbstractButton *quitButton 
-            = box.addButton(tr("Quit"), QMessageBox::ActionRole);
-     QAbstractButton *keepGoing
-            = box.addButton(tr("Yes"), QMessageBox::AcceptRole);
-     QAbstractButton *showVersion
-            = box.addButton(tr("Version"), QMessageBox::ActionRole);
-     box.setText (tr("Keep Going?"));
-     QTimer::singleShot(5000,&box,SLOT(accept()));
-     box.exec();
-     QAbstractButton *result = box.clickedButton();
-     if (result == 0) {
-        return;
-     }
-     if (result == quitButton) {
-       quit();
-     }
-     if (result == keepGoing) {
-       return;
-     }
-     if (result == showVersion) {
-       ShowVersionWindow();
-     }
+    if (config) {
+      config->OpenWin();
+    } else { // no config, we are in trouble
+      exit(1);
+    }
   }
   
   void
   eyes::mousePressEvent(QMouseEvent *click)
   {
-    MenuPopup();
+    if (click) {
+      Qt::MouseButton but = click->button();
+      if (but != Qt::NoButton && but != Qt::LeftButton) {
+        MenuPopup();
+      }
+    }
   }
 
 
@@ -103,9 +116,12 @@ namespace eyes {
   }
   
   void
-  eyes::MyUpdate ()
+  eyes::update ()
   {
-    this->update(); // encourage PaintEvent
+    if (config) {
+      config->update();
+    }
+    QWidget::update();
   }
   
   void
@@ -134,9 +150,12 @@ namespace eyes {
      QPoint midGlobal = this->mapToGlobal(mid);
      double dx = double(cursPoint.x()) - double (midGlobal.x());
      double dy = double(cursPoint.y()) - double (midGlobal.y());
+     double dist = sqrt(dx*dx + dy*dy);
      double theta = -atan2(dx,dy) * 180.0/M_PI;
      double len = (midx > midy ? midy : midx);
+     if (len > dist) { len = dist; }
      int    shortlen = int(len /10.0);
+     
      QPainter paint(this);
      paint.setRenderHint(QPainter::HighQualityAntialiasing);
      paint.setBrush(Qt::NoBrush);
@@ -155,12 +174,69 @@ namespace eyes {
      paint.drawLine(0,0,shortlen, -shortlen);
   }
   
+  void
+  eyes::ShowEyes ()
+  {
+    double h = this->height();
+    double w = this->width();
+    QPoint midL (w*0.25, h*0.5);
+    QPoint midR (w*0.75, h*0.5);
+    double rx = w * 0.22;
+    double ry = h * 0.4;
+    double rmin = (rx > ry ? ry : rx);
+    QPointF cursPoint (QCursor::pos());
+    QPoint gloMidL(this->mapToGlobal(midL));
+    QPoint gloMidR(this->mapToGlobal(midR));
+    double dirLx = cursPoint.x() - double(gloMidL.x());
+    double dirLy = cursPoint.y() - double(gloMidL.y());
+    double thetaL = -atan2(dirLx,dirLy) * 180.0/M_PI;
+    double dirRx = cursPoint.x() - double(gloMidR.x());
+    double dirRy = cursPoint.y() - double(gloMidR.y());
+    double thetaR = -atan2(dirRx,dirRy) * 180.0/M_PI;
+    
+    DrawOneEye (midL,thetaL,rmin*0.5,rmin*0.15);
+    DrawOneEye (midR,thetaR,rmin*0.5,rmin*0.15);
+    
+  }
+  
+  void 
+  eyes::DrawOneEye (QPoint mid, double theta, double r, double wid)
+  {
+    QColor eyecolor(QColor(0,255,0,255));
+    
+    QPainter paint(this);
+    paint.setRenderHint(QPainter::HighQualityAntialiasing);
+    paint.setBrush(Qt::NoBrush);
+    QPen linePen;
+    linePen.setColor(eyecolor);
+    linePen.setWidth(wid);
+    paint.setPen(linePen);
+    paint.save();
+    paint.translate(mid);
+    paint.rotate(theta);
+    paint.translate(0,r);
+    paint.setBrush(eyecolor);
+    paint.drawEllipse (QPoint(0,0),r*0.8,r*0.8);
+    paint.restore();
+    paint.drawEllipse (mid,r*2.0,r*2.0);
+  
+  }
+  
 
   void
   eyes::paintEvent (QPaintEvent *event)
   {
-    ShowSpot ();
-    ShowPointer ();
+    if (config) {
+       if (config->ShowEyes()) {
+         ShowEyes();
+       }
+       if (config->ShowArrow()) {
+         ShowPointer();
+       }
+       if (config->ShowBubble()) {
+          ShowSpot();
+       }
+    }
   }
   
   void

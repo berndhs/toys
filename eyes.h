@@ -25,8 +25,10 @@
 #include <QMouseEvent>
 #include <QPointF>
 
+#include "eyeconfig.h"
 
-namespace eyes {
+
+namespace eyespace {
 
   class eyes : public QWidget, public Ui_EyeWindow {
 
@@ -38,13 +40,14 @@ public:
 
    void SetDelay (int msecs);
    int  delay();
-
+   void SetFrameConf();
+   
    public slots:
 
      
      void quit();
+     void update();
      void NotImplemented ();
-     void MyUpdate();
      void paintEvent(QPaintEvent *event);
      void mousePressEvent(QMouseEvent *click);
      
@@ -53,9 +56,18 @@ public:
      void MenuPopup ();
      void ShowSpot ();
      void ShowPointer ();
+     void ShowEyes ();
+     void DrawOneEye (QPoint mid, 
+                      double theta, 
+                      double r, 
+                      double wid);
    
      QApplication *pApp;
      QPainter     *painter;
+     
+     Qt::WindowFlags  defaultWinFlags;
+     
+     EyeConfig  *config;
      
      double    ScreenHeight;
      double    ScreenWidth;

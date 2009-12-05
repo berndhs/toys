@@ -15,9 +15,9 @@
 // of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
 //
 
-namespace eyes {
+namespace eyespace {
 
-  std::string ProgramVersion("0.9");
+  std::string ProgramVersion("0.9.5");
 
   std::string ProgramName("Eyes");
   std::string copyright ("Copyright (C) 2009 Bernd H Stramm");

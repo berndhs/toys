@@ -14,7 +14,7 @@
 
 #include <string>
 
-namespace eyes {
+namespace eyespace {
 
   std::string MyName();
   std::string Version() ;

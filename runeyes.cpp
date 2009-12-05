@@ -35,7 +35,7 @@ main (int argc, char *argv[])
 {
   QApplication App(argc, argv);
   if (checkversiononly(argc,argv)) {
-    eyes::CLIVersion();
+    eyespace::CLIVersion();
     exit(0);
   }
   QTranslator  trans;
@@ -48,7 +48,7 @@ main (int argc, char *argv[])
   }
   App.installTranslator(&trans);
 
-  eyes::eyes TheEyes(&App);
+  eyespace::eyes TheEyes(&App);
 
   TheEyes.SetDelay(100);
   TheEyes.show();
