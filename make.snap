@@ -1,0 +1,26 @@
+
+TARGET = eyes
+TIMESTAMP=date -u +"%Y%m%d-%H%M%S-u"
+
+SRC = *.cpp
+HDR = *.h
+IMG = 
+DOC = LICENSE.txt INSTALL
+LANG = *.ts *.qm
+TOOLS = *.ui *.pro *.qrc make.snap
+ARCHFILES = $(SRC) $(HDR) $(IMG) $(DOC) $(TOOLS) $(LANG)
+
+snap:
+	T=$(TARGET).`$(TIMESTAMP)`.tar.gz ; \
+	tar zcvf $$T $(ARCHFILES) ; \
+	ls -l $$T
+
+arch:
+	T=$(TARGET).tar.gz ; \
+	tar zcvf $$T $(ARCHFILES) ; \
+	ls -l $$T
+
+
+snapsrc:
+	tar zcvf src.tar.gz $(SRC) $(HDR)
+

@@ -17,18 +17,23 @@ CONFIG += qt
 LIBS += 
 TARGET = eyes
 
-  QMAKE_CFLAGS_RELEASE -= -g
-  QMAKE_CXXFLAGS_RELEASE -= -g
+# these next two lines are to get qmake to suppress debug symbols
+QMAKE_CFLAGS_RELEASE -= -g
+QMAKE_CXXFLAGS_RELEASE -= -g
 
 FORMS += eyes.ui
+
 TRANSLATIONS += eyes_en_US.ts \
-eyes_de_DE.ts \
-eyes_en_CA.ts
+	eyes_de_DE.ts \
+	eyes_en_CA.ts
 
 RESOURCES += eyes.qrc
 
-SOURCES += eyes.cpp runeyes.cpp version.cpp
+SOURCES += eyes.cpp \
+	runeyes.cpp \
+	version.cpp
 
-HEADERS += eyes.h version.h
-
+HEADERS += eyes.h \
+	version.h
+	
 
