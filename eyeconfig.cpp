@@ -42,7 +42,6 @@ EyeConfig::EyeConfig (eyes *parent)
              this,SLOT(DoCheckBubble(int)));
   connect (frameCheck, SIGNAL(stateChanged(int)),
             this,SLOT(DoCheckFrame(int)));
-  
 }
 
 void

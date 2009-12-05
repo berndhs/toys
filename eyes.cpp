@@ -51,6 +51,10 @@ namespace eyespace {
     ScreenWidth  = screen.width();
     this->resize(ScreenWidth/10,ScreenHeight/10);
     SetFrameConf();
+    int mainX = ScreenWidth*0.2;
+    int mainY = ScreenWidth*0.2;
+    this->move (mainX,mainY);
+    config->move (mainX + this->width() +5, mainY);
     config->show();
   }
   
