@@ -4,54 +4,48 @@
 <context>
     <name>EyeConfig</name>
     <message>
-        <location filename="eyeconfig.ui" line="14"/>
         <source>Configure Cursor Chaser</source>
-        <translation type="unfinished"></translation>
+        <translation>Cursor Finder Konfiguration</translation>
     </message>
     <message>
-        <location filename="eyeconfig.ui" line="26"/>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwenden</translation>
     </message>
     <message>
-        <location filename="eyeconfig.ui" line="39"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwerfen</translation>
     </message>
     <message>
-        <location filename="eyeconfig.ui" line="52"/>
         <source>Quit</source>
-        <translation type="unfinished">Aufhören!</translation>
+        <translation>Raus hier!</translation>
     </message>
     <message>
-        <location filename="eyeconfig.ui" line="65"/>
-        <source>Display Eyes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="eyeconfig.ui" line="78"/>
-        <source>Display Arrow</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="eyeconfig.ui" line="91"/>
         <source>Show Bubble</source>
-        <translation type="unfinished"></translation>
+        <translation>Kleiner Kreis</translation>
     </message>
     <message>
-        <location filename="eyeconfig.ui" line="104"/>
         <source>Show Frame</source>
-        <translation type="unfinished"></translation>
+        <translation>Rahmen</translation>
     </message>
     <message>
-        <location filename="eyeconfig.ui" line="122"/>
         <source>Version</source>
-        <translation type="unfinished">Version</translation>
+        <translation>Version</translation>
     </message>
     <message>
-        <location filename="eyeconfig.ui" line="140"/>
         <source>Author</source>
-        <translation type="unfinished"></translation>
+        <translation>Autor</translation>
+    </message>
+    <message>
+        <source>Show Eyes</source>
+        <translation>Augen</translation>
+    </message>
+    <message>
+        <source>Show Arrow</source>
+        <translation>Pfeil</translation>
+    </message>
+    <message>
+        <source>Ok</source>
+        <translation>OK</translation>
     </message>
 </context>
 <context>
@@ -61,35 +55,36 @@
         <translation type="obsolete">Wo isser?</translation>
     </message>
     <message>
-        <location filename="eyes.ui" line="14"/>
         <source>Cursor Chaser</source>
-        <translation>Wo ist mein Cursor?</translation>
+        <translation>Cursor Finder</translation>
     </message>
 </context>
 <context>
     <name>eyes::eyes</name>
     <message>
-        <location filename="eyes.cpp" line="66"/>
         <source>Quit</source>
-        <translation>Aufhören!</translation>
+        <translation type="obsolete">Aufhören!</translation>
     </message>
     <message>
-        <location filename="eyes.cpp" line="68"/>
         <source>Yes</source>
-        <translation>Ja</translation>
+        <translation type="obsolete">Ja</translation>
     </message>
     <message>
-        <location filename="eyes.cpp" line="70"/>
         <source>Version</source>
-        <translation>Version</translation>
+        <translation type="obsolete">Version</translation>
     </message>
     <message>
-        <location filename="eyes.cpp" line="71"/>
         <source>Keep Going?</source>
-        <translation>Weitermachen?</translation>
+        <translation type="obsolete">Weitermachen?</translation>
     </message>
     <message>
-        <location filename="eyes.cpp" line="101"/>
+        <source>not implemented at this time</source>
+        <translation type="obsolete">Diese Funktion ist nicht verfügbar</translation>
+    </message>
+</context>
+<context>
+    <name>eyespace::eyes</name>
+    <message>
         <source>not implemented at this time</source>
         <translation>Diese Funktion ist nicht verfügbar</translation>
     </message>
