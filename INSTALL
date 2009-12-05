@@ -1,0 +1,47 @@
+Linux
+-----
+
+This is a Qt4 project, so you should use qmake (version 4.x, not 3.x),
+like this:
+
+
+qmake-qt4 eyes.pro
+
+This should create the file "Makefile", among others.
+
+Then you can do:
+
+make all
+
+and you should get this executable:
+
+eyes
+
+and that's it.
+
+Windows
+-------
+
+I used Qt Creator, with the Microsoft Visual C++ 2008 Express tool chain.
+Open the project file "eyes.pro" build from there.
+
+
+Prerequisits
+------------
+
+You need on Linux:
+Qt4.5
+
+You need on Windows:
+Qt4.5
+
+Translations
+------------
+
+If you want to translate the messages (all 5 of them) to another
+language, look at the files called "*.ts" to see what you have to
+translate. Then you need the Qt lrelease utility, or Qt Linguist.
+To make it load your translation files, look at the main program
+in runeyes.cpp. You may also want to add your translation file
+(the .qm version) to the eyes.qrc file.
+

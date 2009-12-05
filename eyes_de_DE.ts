@@ -16,24 +16,29 @@
 <context>
     <name>eyes::eyes</name>
     <message>
-        <location filename="eyes.cpp" line="64"/>
-        <source>Quit</source>
-        <translation>Raus hier!</translation>
-    </message>
-    <message>
         <location filename="eyes.cpp" line="66"/>
-        <source>Yes</source>
-        <translation>Immer weiter...</translation>
+        <source>Quit</source>
+        <translation>Aufhören!</translation>
     </message>
     <message>
-        <location filename="eyes.cpp" line="67"/>
+        <location filename="eyes.cpp" line="68"/>
+        <source>Yes</source>
+        <translation>Ja</translation>
+    </message>
+    <message>
+        <location filename="eyes.cpp" line="70"/>
+        <source>Version</source>
+        <translation>Version</translation>
+    </message>
+    <message>
+        <location filename="eyes.cpp" line="71"/>
         <source>Keep Going?</source>
         <translation>Weitermachen?</translation>
     </message>
     <message>
-        <location filename="eyes.cpp" line="94"/>
+        <location filename="eyes.cpp" line="101"/>
         <source>not implemented at this time</source>
-        <translation>Diese Funktion ist noch nicht programmiert</translation>
+        <translation>Diese Funktion ist nicht verfügbar</translation>
     </message>
 </context>
 </TS>

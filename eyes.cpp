@@ -23,6 +23,7 @@
 #define M_PI 3.1415265
 #endif
 #include <QDesktopWidget>
+#include "version.h"
 
 using namespace std;
 
@@ -65,6 +66,8 @@ namespace eyes {
             = box.addButton(tr("Quit"), QMessageBox::ActionRole);
      QAbstractButton *keepGoing
             = box.addButton(tr("Yes"), QMessageBox::AcceptRole);
+     QAbstractButton *showVersion
+            = box.addButton(tr("Version"), QMessageBox::ActionRole);
      box.setText (tr("Keep Going?"));
      QTimer::singleShot(5000,&box,SLOT(accept()));
      box.exec();
@@ -77,6 +80,9 @@ namespace eyes {
      }
      if (result == keepGoing) {
        return;
+     }
+     if (result == showVersion) {
+       ShowVersionWindow();
      }
   }
   

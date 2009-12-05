@@ -16,22 +16,27 @@
 <context>
     <name>eyes::eyes</name>
     <message>
-        <location filename="eyes.cpp" line="64"/>
+        <location filename="eyes.cpp" line="66"/>
         <source>Quit</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="eyes.cpp" line="66"/>
+        <location filename="eyes.cpp" line="68"/>
         <source>Yes</source>
         <translation>Yes of course</translation>
     </message>
     <message>
-        <location filename="eyes.cpp" line="67"/>
+        <location filename="eyes.cpp" line="70"/>
+        <source>Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="eyes.cpp" line="71"/>
         <source>Keep Going?</source>
         <translation>Keep chasing?</translation>
     </message>
     <message>
-        <location filename="eyes.cpp" line="94"/>
+        <location filename="eyes.cpp" line="101"/>
         <source>not implemented at this time</source>
         <translation type="unfinished"></translation>
     </message>

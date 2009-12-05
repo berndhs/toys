@@ -17,8 +17,8 @@ CONFIG += qt
 LIBS += 
 TARGET = eyes
 
-#  QMAKE_CFLAGS_RELEASE -= -g
-#  QMAKE_CXXFLAGS_RELEASE -= -g
+  QMAKE_CFLAGS_RELEASE -= -g
+  QMAKE_CXXFLAGS_RELEASE -= -g
 
 FORMS += eyes.ui
 TRANSLATIONS += eyes_en_US.ts \
@@ -27,8 +27,8 @@ eyes_en_CA.ts
 
 RESOURCES += eyes.qrc
 
-SOURCES += eyes.cpp runeyes.cpp
+SOURCES += eyes.cpp runeyes.cpp version.cpp
 
-HEADERS += eyes.h
+HEADERS += eyes.h version.h
 
 
