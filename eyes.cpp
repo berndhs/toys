@@ -220,9 +220,9 @@ namespace eyespace {
     paint.rotate(theta);
     paint.translate(0,r);
     paint.setBrush(eyecolor);
-    paint.drawEllipse (QPoint(0,0),r*0.8,r*0.8);
+    paint.drawEllipse (QPointF(0,0),r*0.8,r*0.8);
     paint.restore();
-    paint.drawEllipse (mid,r*2.0,r*2.0);
+    paint.drawEllipse (QPointF(mid),r*2.0,r*2.0);
   
   }
   
